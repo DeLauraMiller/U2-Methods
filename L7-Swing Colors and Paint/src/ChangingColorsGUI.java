@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ChangingColorsGUI {
 
@@ -9,6 +11,9 @@ public class ChangingColorsGUI {
     JFrame window;
     JPanel panel;
     JButton colorClicker;
+    Color panelBack = new Color(13, 115, 119);
+    Color buttonBack = new Color(33,33,33);
+    Color buttonFront = new Color(20,255,236);
 
     /*
     This is a constructor and absolutely necessary for a class.
@@ -27,9 +32,16 @@ public class ChangingColorsGUI {
         colorClicker = new JButton("Change the Colors");
 
         //create a new Custom color
+        Color panelBack = new Color(13, 115, 119);
+        Color buttonBack = new Color(33,33,33);
+        Color buttonFront = new Color(20,255,236);
 
         //Set the colors of our buttons and panel
+        panel.setBackground(panelBack);
+        colorClicker.setForeground(buttonFront);
+        colorClicker.setBackground(buttonBack);
 
+        colorClicker.addActionListener(new ColorClickerListener());
         panel.add(colorClicker);
         window.add(panel);
 
@@ -37,6 +49,15 @@ public class ChangingColorsGUI {
     }
 
     //Add a listener to change the color when the button is clicked
+    private class ColorClickerListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent actionEvent){
+
+            panel.setBackground(buttonBack);
+            colorClicker.setForeground(panelBack);
+            colorClicker.setBackground(buttonFront);
+        }
+    }
 
 
 
