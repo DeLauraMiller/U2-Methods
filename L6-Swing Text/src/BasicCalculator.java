@@ -1,6 +1,8 @@
+import com.sun.prism.j2d.J2DPresentable;
+
 import javax.swing.*;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class BasicCalculator {
 
@@ -13,43 +15,58 @@ public class BasicCalculator {
     NO POP-UPS
      */
 
-    static JTextField inputField1, inputField2;
-    static JLabel answerLabel;
+    public static JTextField inputNumber2 = new JTextField("");
+    public static JTextField inputNumber = new JTextField("");
+    public static JLabel finalLabel = new JLabel("");
 
     public static void main(String[] args) {
-
-
-        JFrame window = new JFrame("Simple calculator");
+        JFrame tab = new JFrame("Cal");
         JPanel panel = new JPanel();
-        JLabel inputLabel1 = new JLabel("enter a number: ");
-        JLabel inputLabel2 = new JLabel(" Enter a number: ");
-        inputField1 = new JTextField(10);
-        inputField2 = new JTextField(10);
+        JLabel numberLabel = new JLabel("Number input: ");
+        JLabel numberLabel2 = new JLabel("Number input 1");
 
-        JButton addButton = new JButton("add");
-        JButton subtractButton = new JButton("subtract");
-        JButton multiplyButton = new JButton("Multiply");
-        JButton divideButton = new JButton("divide");
 
-        answerLabel = new JLabel(" 0.00 ");
+        JButton xButt = new JButton("x");
+        JButton subButt = new JButton("-");
+        JButton addButt = new JButton("+");
+        JButton divButt = new JButton("/");
 
-        window.setSize(200, 400);
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setLocationRelativeTo(null);
-        //addButton.addActionListener(new AdditionListener());
 
-        panel.add(inputLabel1);
-        panel.add(inputField1);
-        panel.add(inputLabel2);
-        panel.add(inputField2);
-        panel.add(answerLabel);
+        panel.add(xButt);
+        panel.add(divButt);
+        panel.add(subButt);
+        panel.add(addButt);
 
-        panel.add(addButton);
-        panel.add(subtractButton);
-        panel.add(multiplyButton);
-        panel.add(divideButton);
 
-        window.add(panel);
-        window.setVisible(true);
+        panel.add(inputNumber);
+
+        tab.add(panel);
+        tab.setSize(200,400);
+        tab.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        tab.setLocationRelativeTo(null);
+
+        panel.add(inputNumber);
+        panel.add(numberLabel);
+        panel.add(inputNumber2);
+        panel.add(numberLabel2);
+
+
+        numberLabel.setSize(300, 20);
+        tab.setSize(1600, 1900);
+
+        tab.setVisible(true);
+
     }
+
+    private  static class addListener implements ActionListener{
+        public void actionPerformed(ActionEvent actionEvent){
+            double num1 =  Double.parseDouble(inputNumber.getText());
+            double num2 =  Double.parseDouble(inputNumber2.getText());
+
+            finalLabel.setText(String.valueOf(num1 + num2));
+        }
+    }
+
+
 }
+
